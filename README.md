@@ -1,6 +1,6 @@
-# information-center
+# CodeLite Code Editor
 
-An Electron application with React
+A simple desktop code editor built with Electron and React
 
 ## Recommended IDE Setup
 
