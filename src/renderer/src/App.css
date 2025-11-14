@@ -10,33 +10,14 @@ html {
   overflow-y: hidden;
   overflow-x: auto;
   border: 0;
-  background-color: var(--med-theme); 
-  --pageWidth: 100vw;
-  --row-hover: #2a3657;
-  --dark-theme: #101724;
-  --med-theme: #192130;
-  --med-light-theme: #242a39;
+  background-color: var(--med-theme-color); 
+  --dark-theme-color: #101724;
+  --med-theme-color: #192130;
+  --med-light-theme-color: #242a39;
   --main-color-accent: #5ef8ed;
   --alternate-color-accent: #BCE7FD;
   --yellow-green-button-color: #D4FB7C;
-  --contact-card-font-color: rgb(198, 199, 208);
-  --icon-theme: var(--med-theme);
-  --profile-pic-background-color: #DEE5E7;
-  --form-font-color: white;
-  --form-background-color: var(--med-theme);
-  --form-input-color: var(--med-light-theme);
-  --input-placeholder-color: rgb(188, 188, 188);
   --grey-font: #a8a9bf; 
-  --green-button-color: rgb(5, 234, 146);
-  --blue-button-color: #03a9eb;
-  --search-bar-color: #69737a;
-  --red-accent: #fd6673;
-  --reset-button-color: rgb(252, 93, 132); 
-  --green-accent: rgb(48, 238, 165);
-  --orange-accent: #fdc046;
-  --calendar-tile-active: var(--main-color-accent); 
-  --calendar-tile-hover: var(--med-light-theme);
-  --calendar-tile-font: rgb(230, 229, 229);
 }
 
 body {
@@ -44,19 +25,76 @@ body {
     margin: 0px;
 }
 
-/* Define some utility classes to minimise repetitive css */
+/******************* A CSS Reset to remove some browser presets and make CSS development a bit smoother  ***************/
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/*************** Define some utility classes to minimise repetitive css ***************/
 .size-100 {
   height: 100%;
   width: 100%;
 }
 
-.flex-c {
+.centred {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.flex-c-col {
+.centred-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,7 +105,7 @@ body {
   cursor: pointer;
 }
 
-/* Start of the CSS for the page elements */
+/*************** Start of the CSS for the page elements ***************/
 .wrapper {
   min-height: 100vh;
   width: 100wh;
@@ -76,16 +114,16 @@ body {
   grid-template-columns: 80px 1fr;
   grid-template-rows: 30px 1fr;
   overflow-y: none;
-  background-color: var(--dark-theme);
+  background-color: var(--dark-theme-color);
 }
 
-/* Formatting the error page */
+/*************** Formatting the error page ***************/
 .error-container {
   grid-row: 1 / -1;
   grid-column: 1 / -1;
   height: 100%;
   width: 100%;
-  background-color: var(--dark-theme);
+  background-color: var(--dark-theme-color);
   color: white;
 }
 
@@ -124,9 +162,25 @@ body {
   width: 60px;
 }
 
+.app-title {
+  width: 100px;
+  color: var(--grey-font);
+  font-size: 14px;
+  font-weight: semi-bold;
+  user-select: none;
+}
+
 .menu-option {
+  height: 75%;
   color: var(--grey-font);
   font-size: 13px;
   margin-left: 25px;
-  user-select: none;
+  border: 1px solid white;
+  padding: 0 10px;
+  border-radius: 20px;
+}
+
+.menu-option:hover {
+  background-color: white;
+  cursor: pointer;
 }
