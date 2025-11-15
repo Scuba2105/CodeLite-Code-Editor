@@ -9,7 +9,6 @@ export function PrimaryDisplay() {
         <ErrorBoundary children fallback={ErrorPage}>
             <div className="wrapper">
                 <Titlebar />
-                <div className="wrapper"></div>
             </div>
         </ErrorBoundary>
     )

@@ -1,15 +1,16 @@
-html {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body, #root {
   height: 100%;
-  max-height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
+body {
+    margin: 0px;
+}
+
 #root {
-  height: 100%;
-  width: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
-  border: 0;
   background-color: var(--med-theme-color); 
   --dark-theme-color: #101724;
   --med-theme-color: #192130;
@@ -17,17 +18,13 @@ html {
   --main-color-accent: #5ef8ed;
   --alternate-color-accent: #BCE7FD;
   --yellow-green-button-color: #D4FB7C;
-  --grey-font: #a8a9bf; 
-}
-
-body {
-    display: block;
-    margin: 0px;
+  --grey-theme-color: #a8a9bf; 
+  --grey-theme-color-light: #a8a9bf55; /* 10% opacity */
 }
 
 /******************* A CSS Reset to remove some browser presets and make CSS development a bit smoother  ***************/
 
-/* 1. Use a more-intuitive box-sizing model */
+/* 1. Use a more-intuitive box-sizing model instead of content-box*/
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -107,14 +104,70 @@ h1, h2, h3, h4, h5, h6 {
 
 /*************** Start of the CSS for the page elements ***************/
 .wrapper {
-  min-height: 100vh;
-  width: 100wh;
-  border: 0;
+  min-height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: 80px 1fr;
   grid-template-rows: 30px 1fr;
   overflow-y: none;
   background-color: var(--dark-theme-color);
+}
+
+/* Formatting for the title bar */
+.titlebar {
+  font-family: Arial, Helvetica, sans-serif;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  justify-content: flex-start;
+  background-color: #10192c;
+}
+
+.app-icon {
+  height: 30px;
+  width: 60px;
+}
+
+.app-title {
+  width: 100px;
+  color: var(--grey-theme-color);
+  font-size: 14px;
+  font-weight: semi-bold;
+  user-select: none;
+}
+
+.roboto-logo-font {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.main-menu {
+  height: 100%;
+  display: flex;
+  padding: 0;
+  justify-content: flex-start;
+}
+
+.menu-option {
+  height: 75%;
+  color: var(--grey-theme-color);
+  font-size: 13px;
+  margin-left: 20px;
+  background-color: transparent;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.menu-option:first-child {
+  margin-left: 0px;
+}
+
+.menu-option:hover, .menu-option:active, .menu-option:focus {
+  background-color: var(--grey-theme-color-light);
+  color: var(--grey-theme-color); 
+  cursor: pointer;
 }
 
 /*************** Formatting the error page ***************/
@@ -147,40 +200,3 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 32px;
 }
 
-/* Formatting for the title bar */
-.titlebar {
-  font-family: Arial, Helvetica, sans-serif;
-  grid-row: 1;
-  grid-column: 1 / -1;
-  justify-content: flex-start;
-  background-color: #10192c;
-  app-region: drag;
-}
-
-.app-icon {
-  height: 30px;
-  width: 60px;
-}
-
-.app-title {
-  width: 100px;
-  color: var(--grey-font);
-  font-size: 14px;
-  font-weight: semi-bold;
-  user-select: none;
-}
-
-.menu-option {
-  height: 75%;
-  color: var(--grey-font);
-  font-size: 13px;
-  margin-left: 25px;
-  border: 1px solid white;
-  padding: 0 10px;
-  border-radius: 20px;
-}
-
-.menu-option:hover {
-  background-color: white;
-  cursor: pointer;
-}
