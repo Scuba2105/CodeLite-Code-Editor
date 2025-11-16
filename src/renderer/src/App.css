@@ -32,6 +32,9 @@ body {
   /* Define text colors for the app design system */
   --text-dark: #22272B;
   --text-light: #F2F2F2;
+
+  /* Implement the font sizing for the design system */
+  
 }
 
 /******************* A CSS Reset to remove some browser presets and make CSS development a bit smoother  ***************/
