@@ -11,15 +11,27 @@ body {
 }
 
 #root {
-  background-color: var(--med-theme-color); 
-  --dark-theme-color: #101724;
-  --med-theme-color: #192130;
-  --med-light-theme-color: #242a39;
-  --main-color-accent: #5ef8ed;
-  --alternate-color-accent: #BCE7FD;
-  --yellow-green-button-color: #D4FB7C;
-  --grey-theme-color: #a8a9bf; 
-  --grey-theme-color-light: #a8a9bf55; /* 10% opacity */
+  background-color: var(--med-theme); 
+
+  /* Define the theme variables for the app design system */
+  --dark-theme: #101724;
+  --med-theme: #192130;
+  --light-theme: #242a39;
+  --primary-accent: #5ef8ed;
+  --alternate-accent: #BCE7FD;
+  
+  /* Define the grey's pallette for the app design system */
+  --black: #000000;
+  --grey-dark: #22272B;
+  --grey-med: #495054;
+  --grey-light: #CDD3D6;
+  --grey-pale: #EBEBEB;
+  --off-white: #F2F2F2;
+  --white: #FFFFFF;
+
+  /* Define text colors for the app design system */
+  --text-dark: #22272B;
+  --text-light: #F2F2F2;
 }
 
 /******************* A CSS Reset to remove some browser presets and make CSS development a bit smoother  ***************/
@@ -110,7 +122,7 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 80px 1fr;
   grid-template-rows: 30px 1fr;
   overflow-y: none;
-  background-color: var(--dark-theme-color);
+  background-color: var(--dark-theme);
 }
 
 /* Formatting for the title bar */
@@ -129,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .app-title {
   width: 100px;
-  color: var(--grey-theme-color);
+  color: var(--grey-med);
   font-size: 14px;
   font-weight: semi-bold;
   user-select: none;
@@ -152,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .menu-option {
   height: 75%;
-  color: var(--grey-theme-color);
+  color: var(--grey-med);
   font-size: 13px;
   margin-left: 20px;
   background-color: transparent;
@@ -165,8 +177,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .menu-option:hover, .menu-option:active, .menu-option:focus {
-  background-color: var(--grey-theme-color-light);
-  color: var(--grey-theme-color); 
+  background-color: var(--grey-light);
+  color: var(--grey-med); 
   cursor: pointer;
 }
 
@@ -176,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
   grid-column: 1 / -1;
   height: 100%;
   width: 100%;
-  background-color: var(--dark-theme-color);
+  background-color: var(--dark-theme);
   color: white;
 }
 
