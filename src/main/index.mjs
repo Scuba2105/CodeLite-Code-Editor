@@ -19,6 +19,7 @@ function createWindow() {
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    frame: false, // Removes the default OS titlebar and borders
     webPreferences: {
       preload: preloadAbsolutePath,
       contextIsolation: true,

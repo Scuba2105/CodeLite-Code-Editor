@@ -21,17 +21,18 @@ body {
   --alternate-accent: #BCE7FD;
   
   /* Define the grey's pallette for the app design system */
-  --black: #000000;
-  --grey-dark: #22272B;
-  --grey-med: #495054;
-  --grey-light: #CDD3D6;
-  --grey-pale: #EBEBEB;
-  --off-white: #F2F2F2;
-  --white: #FFFFFF;
+  --black: hsl(0deg, 0%, 0%);
+  --grey-dark: hsl(0deg, 0%, 10%);
+  --grey-med: hsl(0deg, 0%, 30%);
+  --grey-light: hsl(0deg, 0%, 40%);
+  --grey-pale: hsl(0deg, 0%, 60%);
+  --off-white: hsl(0deg, 0%, 95%);
+  --white: hsl(0deg, 0%, 100%);
+
 
   /* Define text colors for the app design system */
-  --text-dark: #22272B;
-  --text-light: #F2F2F2;
+  --text-dark: hsl(207deg, 12%, 9%);
+  --text-light: hsl(0deg, 0%, 90%);
 
   /* Implement the font sizing for the design system */
   
@@ -133,21 +134,29 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
   grid-row: 1;
   grid-column: 1 / -1;
+  display: flex;
   justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
   background-color: #10192c;
+  /* 1. Makes the entire titlebar area draggable */
+  -webkit-app-region: drag; 
 }
 
 .app-icon {
   height: 30px;
   width: 60px;
+  -webkit-app-region: drag; 
+  pointer-events: none; /* Prevents the image from being accidentally dragged out of the app */
 }
 
 .app-title {
-  width: 100px;
-  color: var(--grey-med);
-  font-size: 14px;
-  font-weight: semi-bold;
+  width: fit-content;
+  color: var(--off-white);
+  font-weight: 600;
   user-select: none;
+  margin-right: 40px;
+  transform: translateX(-10px);
 }
 
 .roboto-logo-font {
@@ -155,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: italic;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .main-menu {
@@ -163,26 +172,106 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   padding: 0;
   justify-content: flex-start;
+  list-style: none; /* Removes invisible bullet spaces */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center; /* Vertically aligns elements in the titlebar */
+  -webkit-app-region: no-drag; 
 }
 
+/* Update your static menu text options */
 .menu-option {
   height: 75%;
-  color: var(--grey-med);
+  /* FIX: Changed from dark grey to a bright, readable off-white */
+  color: var(--text-light); 
   font-size: 13px;
-  margin-left: 20px;
+  margin-left: 35px;
   background-color: transparent;
   padding: 0 10px;
-  border-radius: 10px;
+  border-radius: 4px; /* Optional: A smaller radius looks cleaner in titlebars */
+  border: none; /* Removes default button borders */
+  transition: background-color 0.2s, color 0.2s; /* Smooths out the hover effect */
+  user-select: none; /* Prevents text from highlighting if double-clicked */
+  cursor: pointer;
+  white-space: nowrap; /* Keeps single words from wrapping on small screens */
+  margin-right: 35px; /* Adds spacing to the right of each menu item for better separation */
 }
 
 .menu-option:first-child {
   margin-left: 0px;
 }
 
+/* Update your active/hover states to match your UI palette */
 .menu-option:hover, .menu-option:active, .menu-option:focus {
-  background-color: var(--grey-light);
-  color: var(--grey-med); 
+  /* FIX: Uses a low-opacity white overlay so it blends beautifully over ANY dark background */
+  background-color: rgba(255, 255, 255, 0.1); 
+  
+  /* FIX: Changes the text color on hover to your vibrant cyan primary accent */
+  color: var(--primary-accent); 
   cursor: pointer;
+  outline: none; /* Removes default focus rings */
+}
+
+/* 3. Ensure the titlebar allows the app logo and menu to stay left-aligned */
+ .titlebar.centred {
+  justify-content: flex-start; /* Overrides .centred so content doesn't bunch in the middle */ 
+  padding-left: 10px;
+}  
+
+/* Container to relative position the absolute dropdown list */
+.menu-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure buttons don't have default browser borders */
+.menu-option {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+/* Optional active style state when the menu is actively toggled open */
+.menu-option.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--primary-accent);
+}
+
+/* Floating Dropdown Container */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Sits directly beneath the 30px titlebar row */
+  left: 0px; /* Aligns with the margin spacing of menu items */
+  background-color: #141d2f; /* Slightly lighter than dark-theme for depth */
+  border: 1px solid var(--light-theme);
+  border-radius: 4px;
+  padding: 4px 0;
+  min-width: 240px; /* Gives long lines like "Update Loan Equipment Register" room */
+  list-style: none;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+  z-index: 999; /* Forces dropdown to display above body workspace contents */
+  -webkit-app-region: no-drag; /* Critical: allows clicking dropdown items */
+}
+
+/* Single item row inside dropdown menu container */
+.dropdown-item {
+  padding: 8px 16px;
+  color: var(--text-light);
+  font-size: 13px;
+  font-family: sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* Hover effects for individual items in list choice */
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--primary-accent);
 }
 
 /*************** Formatting the error page ***************/
