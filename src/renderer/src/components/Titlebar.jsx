@@ -4,12 +4,16 @@ import icon from '../assets/app-logo-img-only.jpg';
 // Define menu structural data
 const menuData = {
   Equipment: [
-    { label: 'Add Equipment', action: 'add' },
+    { label: 'Add New Equipment', action: 'add' },
     { label: 'Update Loan Equipment Register', action: 'loan' },
     { label: 'Update Trial Equipment Register', action: 'trial' },
     { label: 'View Equipment', action: 'view' }
   ],
-  Jobs: [{ label: 'View Active Jobs', action: 'view-jobs' }],
+  Jobs: [{ label: 'Open New Job', action: 'view-jobs' },
+    { label: 'View All Jobs', action: 'view-jobs' },
+    { label: 'View Active Jobs', action: 'view-jobs' },
+    { label: 'View Completed Jobs', action: 'view-jobs' },
+  ],
   Orders: [{ label: 'New Order', action: 'new-order' }],
   Parts: [{ label: 'Inventory', action: 'parts-inv' }],
   Officer: [{ label: 'Profile', action: 'profile' }],
