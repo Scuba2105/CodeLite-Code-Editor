@@ -1,7 +1,7 @@
 import './App.css';
 import { Titlebar } from './components/Titlebar';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import ErrorPage from './components/ErrorPage';
+import ErrorBoundary from './components/ErrorBoundary';
+import { ErrorPage } from './components/ErrorPage';
 
 export default function App() {
     return (

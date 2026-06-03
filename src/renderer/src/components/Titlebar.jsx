@@ -20,6 +20,17 @@ const menuData = {
   About: [{ label: 'App Version', action: 'version' }]
 };
 
+const handleOptionClick = (menuName, setOpenMenu, openMenu) => {
+    // Toggle menu open/closed on click
+    setOpenMenu(openMenu === menuName ? null : menuName);
+};
+
+const handleSubItemClick = (action, setOpenMenu) => {
+    console.log(`Executing action: ${action}`);
+    setOpenMenu(null); // Close the menu after choice
+    // Your routing / view-switching logic goes here
+};
+
 export function Titlebar() {
   const [openMenu, setOpenMenu] = useState(null);
   const menuRef = useRef(null);
@@ -35,17 +46,6 @@ export function Titlebar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleOptionClick = (menuName) => {
-    // Toggle menu open/closed on click
-    setOpenMenu(openMenu === menuName ? null : menuName);
-  };
-
-  const handleSubItemClick = (action) => {
-    console.log(`Executing action: ${action}`);
-    setOpenMenu(null); // Close the menu after choice
-    // Your routing / view-switching logic goes here
-  };
-
   return (
     <div className="titlebar">
       <img className="app-icon" src={icon} alt="MedEq DB logo" />
@@ -56,7 +56,7 @@ export function Titlebar() {
           <li key={menuName} className="menu-container">
             <button 
               className={`menu-option centred ${openMenu === menuName ? 'active' : ''}`}
-              onClick={() => handleOptionClick(menuName)}
+              onClick={() => handleOptionClick(menuName, setOpenMenu, openMenu)}
             >
               {menuName}
             </button>
@@ -68,7 +68,7 @@ export function Titlebar() {
                   <li 
                     key={index} 
                     className="dropdown-item"
-                    onClick={() => handleSubItemClick(subItem.action)}
+                    onClick={() => handleSubItemClick(subItem.action, setOpenMenu)}
                   >
                     {subItem.label}
                   </li>
